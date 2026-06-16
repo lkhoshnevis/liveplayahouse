@@ -1,8 +1,9 @@
 "use client";
 
 import { motion, useMotionValueEvent, useScroll, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import { ApplyButton, ImagePlaceholder, LogoPlaceholder, SectionLabel } from "./ui";
+import { ApplyButton, LogoPlaceholder, SectionLabel } from "./ui";
 import { VisionForFuture } from "./VisionForFuture";
 import { FaqAccordion } from "./FaqAccordion";
 
@@ -19,20 +20,26 @@ const BELIEFS = [
   {
     number: 1,
     text: "History has shown over and over again that dense groups of talent always lead to outsized outcomes.",
-    leftLabel: "Group photo 1",
-    rightLabel: "Group photo 2",
+    leftImage: "/images/beliefs/belief-1-left.png",
+    rightImage: "/images/beliefs/belief-1-right.png",
+    leftAlt: "Manhattan Project scientists collaborating at UC Berkeley, 1940",
+    rightAlt: "Researchers at Bell Labs",
   },
   {
     number: 2,
     text: "Visionary ideas are insanely hard to pursue — being surrounded by likeminded people makes it a little less hard.",
-    leftLabel: "Group photo 3",
-    rightLabel: "Group photo 4",
+    leftImage: "/images/beliefs/belief-2-left.png",
+    rightImage: "/images/beliefs/belief-2-right.png",
+    leftAlt: "PayPal founders group photo",
+    rightAlt: "Early Y Combinator batch founders",
   },
   {
     number: 3,
     text: "Young people are shaped more by their surroundings than older people, so there is no better time to find inspiring peers than now.",
-    leftLabel: "Group photo 5",
-    rightLabel: "Group photo 6",
+    leftImage: "/images/beliefs/belief-3-left.png",
+    rightImage: "/images/beliefs/belief-3-right.png",
+    leftAlt: "Young founders gathered together",
+    rightAlt: "Collaborators at Xerox PARC",
   },
 ] as const;
 
@@ -97,10 +104,16 @@ export function HomeScrollExperience() {
                   transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
                   className="absolute left-4 top-1/2 hidden w-[18vw] max-w-[220px] -translate-y-1/2 md:block lg:left-10 lg:max-w-[260px]"
                 >
-                  <ImagePlaceholder
-                    className="aspect-[3/4] w-full"
-                    label={BELIEFS[activeBelief].leftLabel}
-                  />
+                  <div className="relative aspect-[3/4] w-full overflow-hidden rounded-sm">
+                    <Image
+                      src={BELIEFS[activeBelief].leftImage}
+                      alt={BELIEFS[activeBelief].leftAlt}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 1024px) 18vw, 260px"
+                      priority={activeBelief === 0}
+                    />
+                  </div>
                 </motion.div>
                 <motion.div
                   key={`right-${activeBelief}`}
@@ -110,10 +123,16 @@ export function HomeScrollExperience() {
                   transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
                   className="absolute right-4 top-1/2 hidden w-[18vw] max-w-[220px] -translate-y-1/2 md:block lg:right-10 lg:max-w-[260px]"
                 >
-                  <ImagePlaceholder
-                    className="aspect-[3/4] w-full"
-                    label={BELIEFS[activeBelief].rightLabel}
-                  />
+                  <div className="relative aspect-[3/4] w-full overflow-hidden rounded-sm">
+                    <Image
+                      src={BELIEFS[activeBelief].rightImage}
+                      alt={BELIEFS[activeBelief].rightAlt}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 1024px) 18vw, 260px"
+                      priority={activeBelief === 0}
+                    />
+                  </div>
                 </motion.div>
               </>
             )}
