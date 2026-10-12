@@ -1,0 +1,15 @@
+{
+  "framework": null,
+  "redirects": [
+    { "source": "/home.dc.html", "destination": "/", "permanent": true },
+    { "source": "/people.dc.html", "destination": "/people", "permanent": true },
+    { "source": "/house.dc.html", "destination": "/house", "permanent": true },
+    { "source": "/future.dc.html", "destination": "/future", "permanent": true }
+  ],
+  "rewrites": [
+    { "source": "/", "destination": "/home.dc.html" },
+    { "source": "/people", "destination": "/people.dc.html" },
+    { "source": "/house", "destination": "/house.dc.html" },
+    { "source": "/future", "destination": "/future.dc.html" }
+  ]
+}
