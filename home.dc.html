@@ -18,7 +18,7 @@ html{overflow-x:hidden;overscroll-behavior-y:none}
 body{margin:0;background:#fff;overflow-x:hidden;overscroll-behavior-y:none}
 #dc-root,#dc-root>.sc-host{height:auto!important;min-height:0!important}
 .page{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;color:#161616;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
-.wrap{max-width:620px;margin:0 auto;padding:calc(96px + env(safe-area-inset-top,0px)) 24px 32px}
+.wrap{max-width:620px;margin:0 auto;padding:calc(120px + env(safe-area-inset-top,0px)) 24px 32px}
 .hero{font-family:'Newsreader',Georgia,serif;font-size:44px;line-height:1.18;font-weight:400;font-style:italic;letter-spacing:-.01em;margin:0 0 56px;display:flex;justify-content:center;text-align:center}
 .hero-line{display:inline-block;text-align:center;max-width:100%}
 .blurb{font-size:16px;line-height:1.75;color:#3d3d3d;margin:0 0 56px;text-wrap:pretty}
@@ -44,7 +44,7 @@ body{margin:0;background:#fff;overflow-x:hidden;overscroll-behavior-y:none}
 .belief-card:hover .belief-label{opacity:1}
 .carousel-arrow{background:none;border:none;font-size:22px;line-height:1;color:#c8c8c8;cursor:pointer;padding:4px;flex-shrink:0;font-family:'Newsreader',Georgia,serif;transition:color .2s ease}
 .carousel-arrow:hover{color:#161616}
-.site-head{position:fixed;left:0;right:0;top:0;background:#fff;padding:calc(18px + env(safe-area-inset-top,0px)) 0 18px;border-bottom:1px solid #ebebeb;text-align:center;z-index:20}
+.site-head{position:fixed;left:0;right:0;top:0;height:calc(64px + env(safe-area-inset-top,0px));padding-top:env(safe-area-inset-top,0px);background:#fff;border-bottom:1px solid #ebebeb;z-index:20;display:flex;align-items:center;justify-content:center}
 .bottom-nav{display:flex;align-items:center;justify-content:center;gap:24px;flex-wrap:wrap}
 .nav-link{font-family:'Newsreader',Georgia,serif;font-size:16px;color:#949494;text-decoration:none}
 .nav-link.active{color:#161616;font-style:italic;text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}
@@ -93,6 +93,8 @@ body{margin:0;background:#fff;overflow-x:hidden;overscroll-behavior-y:none}
 <button type="button" class="carousel-arrow" aria-label="Next" onClick="{{ nextSlide }}">→</button>
 </div>
 </div>
+
+<hr class="rule">
 
 </div></div>
 </x-dc>
