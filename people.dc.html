@@ -74,11 +74,11 @@ body{margin:0;background:#fff;overflow-x:hidden;overscroll-behavior-y:none}
 <sc-if value="{{ person.photo }}">
 <div class="face-photo-wrap">
 <img class="face-photo" src="{{ person.photo }}" alt="{{ person.name }}">
-<sc-if value="{{ person.showUcsbBadge }}"><span class="affiliation-badge affiliation-badge-overlay">UCSB</span></sc-if>
+<sc-if value="{{ person.showUcsbBadgeOverlay }}"><span class="affiliation-badge affiliation-badge-overlay">UCSB</span></sc-if>
 </div>
 </sc-if>
 <p class="face-name">{{ person.name }}</p>
-<sc-if value="{{ !person.photo && person.showUcsbBadge }}"><span class="affiliation-badge">UCSB alum</span></sc-if>
+<sc-if value="{{ person.showUcsbBadgeInline }}"><span class="affiliation-badge">UCSB alum</span></sc-if>
 </div>
 <div class="flip-face flip-back">
 <p class="back-desc">{{ person.backDesc }}</p>
@@ -165,7 +165,8 @@ class Component extends DCLogic {
         ...person,
         href: this.normalizeUrl(person.href),
         backDesc: person.description || person.name,
-        showUcsbBadge: !!person.ucsbAlum,
+        showUcsbBadgeOverlay: !!(person.photo && person.ucsbAlum),
+        showUcsbBadgeInline: !!(!person.photo && person.ucsbAlum),
       })),
     }));
     return { groups };
