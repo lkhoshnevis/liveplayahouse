@@ -23,9 +23,9 @@ body{margin:0;background:#fff;overflow-x:hidden;overscroll-behavior-y:none}
 .rule{height:1px;background:#ebebeb;border:0;margin:18px 0}
 .group-label{font-family:'Newsreader',Georgia,serif;font-size:20px;color:#161616;margin:0 0 4px;font-style:italic}
 .group-desc{font-size:14px;line-height:1.5;color:#949494;margin:0 0 10px}
-.group-photo{margin:0 0 8px}
-.group-photo-frame{border-radius:6px;overflow:hidden}
-.group-photo-frame img{width:100%;max-height:280px;object-fit:contain;display:block}
+.group-photos-row{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;width:100vw;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw)}
+.group-photo-frame{aspect-ratio:1;overflow:hidden}
+.group-photo-frame img{width:100%;height:100%;object-fit:cover;display:block}
 .people-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px 8px;margin:0 0 4px;align-items:start}
 .flip-card{perspective:1000px;aspect-ratio:1}
 .flip-inner{position:relative;width:100%;height:100%;transition:transform .55s cubic-bezier(.4,.15,.2,1);transform-style:preserve-3d}
@@ -84,13 +84,9 @@ body{margin:0;background:#fff;overflow-x:hidden;overscroll-behavior-y:none}
 <hr class="rule">
 </sc-for>
 
-<div class="group-photo">
+<div class="group-photos-row">
 <div class="group-photo-frame"><img src="./assets/people/team.png" alt="Playa House team at New Venture Competition"></div>
-</div>
-<div class="group-photo">
 <div class="group-photo-frame"><img src="./assets/people/group-work.png" alt="Residents working together at Playa House"></div>
-</div>
-<div class="group-photo">
 <div class="group-photo-frame"><img src="./assets/people/group-photo.jpg" alt="Playa House group photo"></div>
 </div>
 
