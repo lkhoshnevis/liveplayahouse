@@ -33,11 +33,8 @@ body{margin:0;background:#fff;overflow-x:hidden;overscroll-behavior-y:none}
 .flip-face{backface-visibility:hidden;-webkit-backface-visibility:hidden;border:1px solid rgba(0,0,0,.12);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:6px 4px;text-align:center}
 .flip-front{position:relative;height:100%}
 .flip-back{position:absolute;inset:0;background:#161616;border-color:rgba(255,255,255,.15);transform:rotateY(180deg);justify-content:space-between}
-.face-photo-wrap{position:relative;display:inline-flex;flex-shrink:0;margin-bottom:8px}
-.face-photo{width:148px;height:148px;object-fit:contain;display:block}
+.face-photo{width:148px;height:148px;object-fit:contain;margin-bottom:8px;flex-shrink:0}
 .face-name{font-family:'Newsreader',Georgia,serif;font-size:14px;color:#161616;margin:0;line-height:1.3}
-.affiliation-badge{font-size:10px;font-weight:400;color:#a89452;background:#faf9f5;border:1px solid #ece6d4;border-radius:999px;padding:2px 7px;margin-top:6px;line-height:1.35;white-space:nowrap}
-.affiliation-badge-overlay{position:absolute;bottom:-2px;right:-6px;margin-top:0;font-size:8px;padding:2px 6px}
 .back-desc{font-size:12px;line-height:1.5;color:#dcdcdc;margin:0;flex:1;display:flex;align-items:center;justify-content:center}
 .back-link{font-size:11px;color:#fff;text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px;flex-shrink:0}
 .site-head{position:fixed;left:0;right:0;top:0;height:calc(64px + env(safe-area-inset-top,0px));padding-top:env(safe-area-inset-top,0px);background:#fff;border-bottom:1px solid #ebebeb;z-index:20;display:flex;align-items:center;justify-content:center}
@@ -71,14 +68,8 @@ body{margin:0;background:#fff;overflow-x:hidden;overscroll-behavior-y:none}
 <div class="flip-card">
 <div class="flip-inner">
 <div class="flip-face flip-front">
-<sc-if value="{{ person.photo }}">
-<div class="face-photo-wrap">
-<img class="face-photo" src="{{ person.photo }}" alt="{{ person.name }}">
-<sc-if value="{{ person.showUcsbBadgeOverlay }}"><span class="affiliation-badge affiliation-badge-overlay">UCSB</span></sc-if>
-</div>
-</sc-if>
+<sc-if value="{{ person.photo }}"><img class="face-photo" src="{{ person.photo }}" alt="{{ person.name }}"></sc-if>
 <p class="face-name">{{ person.name }}</p>
-<sc-if value="{{ person.showUcsbBadgeInline }}"><span class="affiliation-badge">UCSB alum</span></sc-if>
 </div>
 <div class="flip-face flip-back">
 <p class="back-desc">{{ person.backDesc }}</p>
@@ -139,18 +130,18 @@ class Component extends DCLogic {
       desc: "People who have been an integral part of our network.",
       labelClass: "group-label",
       people: [
-        { name: "Hursh Shah", photo: "./assets/headshots/Hursh.png", description: "Founder of Edviro (YC)", href: "https://www.linkedin.com/in/hursh-shah/?skipRedirect=true", ucsbAlum: true },
-        { name: "Tanuj Siripurapu", photo: "./assets/headshots/Tanuj.png", description: "Founder of Edviro (YC)", href: "https://www.linkedin.com/in/tanuj-siripurapu/?skipRedirect=true", ucsbAlum: true },
-        { name: "Bryan Hong", photo: null, description: "Co-founder of Shofo AI (YC)", href: "https://www.linkedin.com/in/zixihong/", ucsbAlum: true },
-        { name: "Nader Khalil", photo: null, description: "Founder of Brev · NVIDIA director", href: "https://www.linkedin.com/in/naderlikeladder/", ucsbAlum: true },
-        { name: "Ryan Mcentush", photo: null, description: "A16Z Partner (American Dynamism)", href: "https://www.linkedin.com/in/ryanmcentush/", ucsbAlum: true },
-        { name: "Mike Rosengarten", photo: null, description: "Co-founder of Opengov · GP Builders VC", href: "https://www.linkedin.com/in/michaelrosengarten/", ucsbAlum: true },
-        { name: "Nick Malone", photo: null, description: "President of Protagonist VC", href: "https://www.linkedin.com/in/njmalone26/", ucsbAlum: true },
+        { name: "Hursh Shah", photo: "./assets/headshots/Hursh.png", description: "Founder of Edviro (YC)", href: "https://www.linkedin.com/in/hursh-shah/?skipRedirect=true" },
+        { name: "Tanuj Siripurapu", photo: "./assets/headshots/Tanuj.png", description: "Founder of Edviro (YC)", href: "https://www.linkedin.com/in/tanuj-siripurapu/?skipRedirect=true" },
+        { name: "Bryan Hong", photo: null, description: "Co-founder of Shofo AI (YC)", href: "https://www.linkedin.com/in/zixihong/" },
+        { name: "Nader Khalil", photo: null, description: "Founder of Brev · NVIDIA director", href: "https://www.linkedin.com/in/naderlikeladder/" },
+        { name: "Ryan Mcentush", photo: null, description: "A16Z Partner (American Dynamism)", href: "https://www.linkedin.com/in/ryanmcentush/" },
+        { name: "Mike Rosengarten", photo: null, description: "Co-founder of Opengov · GP Builders VC", href: "https://www.linkedin.com/in/michaelrosengarten/" },
+        { name: "Nick Malone", photo: null, description: "President of Protagonist VC", href: "https://www.linkedin.com/in/njmalone26/" },
         { name: "Nick Linck", photo: null, description: "Founder of the residency", href: "https://www.linkedin.com/in/nick-linck-417b0ba9/?skipRedirect=true" },
         { name: "Quinn Godfredsen", photo: "./assets/headshots/Quinn.png", description: "Top global League of Legends player, SBHacks 1st place winner, and founder of Legaltime AI — changing the way law firms work.", href: null },
         { name: "Stanton Nowinski", photo: "./assets/headshots/Stanton.png", description: "Top global chess player, Datathon 1st place winner, and founder of Amniotide, building foundation models for proteins and RNA.", href: null },
-        { name: "John Lins", photo: "./assets/headshots/John.png", description: "Lead research author at LLNL and founder of Repclose, building deep research agents for lead generation.", href: null, ucsbAlum: true },
-        { name: "Ivan Bercovich", photo: null, description: "GP of ScOp VC", href: "https://www.linkedin.com/in/bercovich/", ucsbAlum: true },
+        { name: "John Lins", photo: "./assets/headshots/John.png", description: "Lead research author at LLNL and founder of Repclose, building deep research agents for lead generation.", href: null },
+        { name: "Ivan Bercovich", photo: null, description: "GP of ScOp VC", href: "https://www.linkedin.com/in/bercovich/" },
       ],
     },
   ];
@@ -165,8 +156,6 @@ class Component extends DCLogic {
         ...person,
         href: this.normalizeUrl(person.href),
         backDesc: person.description || person.name,
-        showUcsbBadgeOverlay: !!(person.photo && person.ucsbAlum),
-        showUcsbBadgeInline: !!(!person.photo && person.ucsbAlum),
       })),
     }));
     return { groups };
