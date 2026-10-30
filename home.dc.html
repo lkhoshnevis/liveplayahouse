@@ -30,20 +30,6 @@ body{margin:0;background:#fff;overflow-x:hidden;overscroll-behavior-y:none}
 .belief-item:last-of-type{margin-bottom:0}
 .belief-num{font-family:'Newsreader',Georgia,serif;font-size:15px;color:#b0b0b0;min-width:20px;flex-shrink:0}
 .belief-text{font-size:15px;line-height:1.72;color:#3d3d3d;margin:0;text-wrap:pretty}
-.belief-images{margin:0}
-.carousel{display:flex;align-items:center;gap:12px}
-.carousel-viewport{flex:1;overflow:hidden;border-radius:6px;background:#f7f7f7}
-.carousel-track{display:flex;will-change:transform;align-items:center}
-.carousel-track .belief-card{flex:0 0 100%;min-width:100%}
-.belief-card{position:relative;display:flex;align-items:center;justify-content:center;min-height:160px;border-radius:6px;overflow:hidden;text-decoration:none;background:#f7f7f7}
-.belief-card img{width:100%;max-height:200px;height:auto;object-fit:contain;display:block;transition:filter .25s ease}
-.belief-card::after{content:'';position:absolute;inset:0;background:rgba(0,0,0,0);transition:background .25s ease;pointer-events:none}
-.belief-card:hover::after{background:rgba(0,0,0,.42)}
-.belief-card:hover img{filter:brightness(.85)}
-.belief-label{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Newsreader',Georgia,serif;font-size:19px;color:#fff;opacity:0;transition:opacity .25s ease;pointer-events:none;z-index:1;text-align:center;padding:12px}
-.belief-card:hover .belief-label{opacity:1}
-.carousel-arrow{background:none;border:none;font-size:22px;line-height:1;color:#c8c8c8;cursor:pointer;padding:4px;flex-shrink:0;font-family:'Newsreader',Georgia,serif;transition:color .2s ease}
-.carousel-arrow:hover{color:#161616}
 .media-list{display:flex;flex-direction:column;gap:16px}
 .media-item{display:flex;align-items:center;gap:16px;text-decoration:none;color:inherit}
 .media-thumb{width:112px;height:63px;flex-shrink:0;border-radius:6px;overflow:hidden;background:#f7f7f7}
@@ -92,21 +78,6 @@ body{margin:0;background:#fff;overflow-x:hidden;overscroll-behavior-y:none}
 
 <hr class="rule">
 
-<h2 class="sec">Dont take our word for it</h2>
-<div class="belief-images">
-<div class="carousel">
-<button type="button" class="carousel-arrow" aria-label="Previous" onClick="{{ prevSlide }}">←</button>
-<div class="carousel-viewport">
-<div class="carousel-track" style="{{ trackStyle }}">
-<sc-for list="{{ slides }}" as="slide" hint-placeholder-count="6"><a class="belief-card" href="{{ slide.href }}" target="_blank" rel="noopener noreferrer"><img src="{{ slide.src }}" alt=""><span class="belief-label">{{ slide.label }}</span></a></sc-for>
-</div>
-</div>
-<button type="button" class="carousel-arrow" aria-label="Next" onClick="{{ nextSlide }}">→</button>
-</div>
-</div>
-
-<hr class="rule">
-
 <h2 class="sec">More info</h2>
 <div class="media-list">
 <sc-for list="{{ media }}" as="item" hint-placeholder-count="2"><a class="media-item" href="{{ item.href }}" target="_blank" rel="noopener noreferrer"><span class="media-thumb"><img src="{{ item.src }}" alt=""></span><div class="media-text"><div class="media-source">{{ item.source }}</div><div class="media-title">{{ item.title }}</div></div></a></sc-for>
@@ -116,32 +87,14 @@ body{margin:0;background:#fff;overflow-x:hidden;overscroll-behavior-y:none}
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
-  slides = [
-    { src: "./assets/belief-4.png", label: "Manhatten Project", href: "https://en.wikipedia.org/wiki/Manhattan_Project" },
-    { src: "./assets/belief-1.png", label: "PayPal Mafia", href: "https://en.wikipedia.org/wiki/PayPal_Mafia" },
-    { src: "./assets/belief-2.png", label: "HRT 2015", href: "https://x.com/jay_drainjr/status/2043666559244062732" },
-    { src: "./assets/belief-3.png", label: "Bell Labs", href: "https://en.wikipedia.org/wiki/Bell_Labs" },
-    { src: "./assets/belief-5.png", label: "Xerox Parc", href: "https://en.wikipedia.org/wiki/PARC_(company)" },
-    { src: "./assets/belief-6.png", label: "Y Combinator", href: "https://www.ycombinator.com/" },
-  ];
-
   media = [
     { src: "./assets/media/ucsb-engineering.jpg", source: "UCSB Engineering", title: "Student-Run Founder House Sparks Success", href: "https://engineering.ucsb.edu/news/playa-house" },
     { src: "./assets/media/substack-residency.jpg", source: "Substack", title: "Build a Residency at Your School", href: "https://parableofthetalents.substack.com/p/start-a-residency-at-your-school" },
   ];
 
-  state = {
-    slideIndex: 0,
-  };
-
   renderVals() {
-    const i = this.state.slideIndex;
     return {
-      slides: this.slides,
       media: this.media,
-      trackStyle: { transform: `translateX(-${i * 100}%)`, transition: "transform 0.45s ease" },
-      prevSlide: () => this.setState(s => ({ slideIndex: (s.slideIndex - 1 + this.slides.length) % this.slides.length })),
-      nextSlide: () => this.setState(s => ({ slideIndex: (s.slideIndex + 1) % this.slides.length })),
     };
   }
 }
